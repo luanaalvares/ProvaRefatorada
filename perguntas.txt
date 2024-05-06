@@ -1,0 +1,23 @@
+1) Descreva com suas palavras o que é o loop de eventos no contexto do
+Node.js. Explique como ele funciona para permitir operações assíncronas não
+bloqueantes, mencionando os tipos de tarefas que são processadas em cada fase do
+loop de eventos. Como o loop de eventos se relaciona com a eficiência do Node.js em
+lidar com I/O assíncrono?
+
+O loop de eventos no contexto do Node.js é o mecanismo central que permite a execução assíncrona e não bloqueante de operações. Funciona de maneira cíclica, continuamente processando eventos e tarefas em um único thread, tornando o Node.js eficiente em lidar com operações de I/O assíncronas.
+1 Evento de entrada: O Node.js recebe eventos externos, como requisições HTTP, conexões de rede ou chamadas de sistema de arquivos, e os coloca na fila de eventos.
+2 Fase de processamento: O loop de eventos verifica a fila de eventos e executa as callbacks associadas a esses eventos quando a pilha de chamadas está vazia, garantindo que o Node.js permaneça responsivo e não bloqueie enquanto aguarda operações de I/O.
+3 Timer: Lida com temporizadores expirados, colocando os callbacks correspondentes na fila de eventos para serem processados na próxima iteração do loop.
+4 Operações I/O: O Node.js executa operações de I/O assíncronas, como leitura e gravação de arquivos, consultas de banco de dados e solicitações de rede, delegando essas tarefas para o sistema operacional e registrando callbacks para serem executadas quando as operações forem concluídas.
+5 Processamento de timers adicionais: Lida com temporizadores iniciados durante a execução das callbacks anteriores.
+6 Checagem de eventos assíncronos: Verifica se há eventos assíncronos pendentes, incluindo eventos de I/O completos e timers expirados.
+7 Callbacks de operações assíncronas: Executa as callbacks associadas aos eventos assíncronos concluídos durante o loop, garantindo que as operações assíncronas sejam tratadas corretamente e que as ações necessárias sejam realizadas quando os resultados estiverem disponíveis.
+
+------------------------------------------------------------------------------------------------------------
+2) Explique com suas palavras o papel da engine V8 e da biblioteca libuv no
+funcionamento do Node.js. Como cada uma dessas componentes contribui para a
+execução de código JavaScript e operações de I/O assíncronas, respectivamente?
+Discuta como a interação entre V8 e libuv permite que o Node.js ofereça um
+desempenho eficiente para aplicações web.
+
+A engine V8 executa o código JavaScript de forma eficiente, enquanto a biblioteca libuv lida com operações de I/O assíncronas. A V8 garante a rápida execução do código, enquanto a libuv permite operações de I/O não bloqueantes. A interação entre essas duas componentes proporciona ao Node.js um desempenho eficiente em aplicações web, possibilitando lidar com múltiplas solicitações sem bloqueio.
